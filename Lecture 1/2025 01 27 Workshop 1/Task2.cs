@@ -16,6 +16,10 @@ namespace _2025_01_27_Workshop_1
             {
                 Console.WriteLine(integer);
             }
+
+            int[] array = {1, 2, 3};
+            int total_sum = ComputeSum(array);
+            Console.WriteLine(total_sum);
             return;
         }
         static int[] GenerateRandomIntegers()
@@ -27,6 +31,16 @@ namespace _2025_01_27_Workshop_1
                 random_integers[i] = random.Next();
             }
             return random_integers;
+        }
+
+        static int ComputeSum(int[] array)
+        {
+            int total = 0;
+            foreach (int integer in array)
+            {
+                total += integer;
+            }
+            return total;
         }
     }
 }
