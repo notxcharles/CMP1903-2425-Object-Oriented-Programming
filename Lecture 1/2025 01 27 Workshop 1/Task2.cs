@@ -20,6 +20,12 @@ namespace _2025_01_27_Workshop_1
             int[] array = {1, 2, 3};
             int total_sum = ComputeSum(array);
             Console.WriteLine(total_sum);
+
+            Dictionary<int, int> digit_frequency = ComputeHistogram(array);
+            foreach (var entry in digit_frequency)
+            {
+                Console.WriteLine($"{entry.Key} has frequency {entry.Value}");
+            }
             return;
         }
         static int[] GenerateRandomIntegers()
@@ -41,6 +47,21 @@ namespace _2025_01_27_Workshop_1
                 total += integer;
             }
             return total;
+        }
+
+        static Dictionary<int, int> ComputeHistogram(int[] array)
+        {
+            Dictionary<int, int> digit_frequency = new Dictionary<int, int>();
+            foreach (int integer in array)
+            {
+                if (!digit_frequency.ContainsKey(integer))
+                {
+                    digit_frequency.Add(integer, 0);
+                }
+                digit_frequency[integer]++;
+                
+            }
+            return digit_frequency;
         }
     }
 }
