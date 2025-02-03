@@ -75,14 +75,31 @@ namespace _2025_02_03_Workshop_2
             {
                 Console.WriteLine($"The student: {m_studentName} attended the module {m_moduleName} and was marked with {m_grade}.");
             }
+
+            public void ComputeGradeCategory()
+            {
+                if (m_grade >= 70)
+                {
+                    Console.WriteLine($"The student {m_studentName} was graded with Merit");
+                }
+                else if (m_grade > 0)
+                {
+                    Console.WriteLine($"The student {m_studentName} was graded with Pass");
+                }
+                else
+                {
+                    Console.WriteLine($"The student {m_studentName} is missing mark");
+                }
+            }
         }
         static void Main(string[] args)
         {
             Student student = new Student("Alice", 45, "Object-Oriented Programming");
-            student.Grade = 50;
+            student.Grade = 71;
             student.ModuleName = "oop";
             student.StudentName = "charles";
             student.DisplayInfo();
+            student.ComputeGradeCategory();
         }
     }
 }
