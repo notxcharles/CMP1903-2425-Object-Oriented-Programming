@@ -66,7 +66,7 @@ namespace BankAccount
         private string m_address;
         private string m_accountType;
         private string m_email;
-        private int m_phone;
+        private int m_phoneNumber;
         private int m_age;
         private Random m_random;
 
@@ -79,7 +79,7 @@ namespace BankAccount
             m_accountHolderName = accountHolderName;
             m_address = address;
             m_email = email;
-            m_phone = phone;
+            m_phoneNumber = phone;
             m_age = age;
             m_random = new Random();
             
@@ -92,7 +92,7 @@ namespace BankAccount
             m_accountHolderName = String.Concat(accountHolderPerson.FirstName, accountHolderPerson.LastName);
             m_address = accountHolderPerson.Address;
             m_email = accountHolderPerson.Email;
-            m_phone = accountHolderPerson.Phone;
+            m_phoneNumber = accountHolderPerson.Phone;
             m_age = accountHolderPerson.Age;
             m_random = new Random();
 
@@ -144,6 +144,11 @@ namespace BankAccount
         {
             get { return m_age; }
             set { m_age = value; }
+        }
+        public int PhoneNumber
+        {
+            get { return m_phoneNumber; }
+            set { m_phoneNumber = value; }
         }
         public string AccountType
         {
