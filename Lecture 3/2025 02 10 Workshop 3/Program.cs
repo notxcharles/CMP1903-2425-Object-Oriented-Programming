@@ -59,7 +59,7 @@ namespace _2025_02_10_Workshop_3
                     int computerRoll = computerPlayer.PlayTurn();
                     DeclareWinner(playerRoll, computerRoll);
                 }
-
+                Console.WriteLine($"The final score was:\nuser: {userWins} | computer: {computerWins}");
             }
             private void DeclareWinner(int playerRoll, int computerRoll)
             {
