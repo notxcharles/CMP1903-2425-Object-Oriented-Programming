@@ -53,7 +53,7 @@ namespace _2025_02_10_Workshop_3
             public void Start()
             {
                 numberOfTurns = SetNumberOfTurns();
-                while (numberOfTurnsPlayed <= numberOfTurns)
+                while (numberOfTurnsPlayed < numberOfTurns)
                 {
                     int playerRoll = userPlayer.PlayTurn();
                     int computerRoll = computerPlayer.PlayTurn();
