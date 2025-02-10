@@ -69,6 +69,9 @@ namespace BankAccount
         private string m_email;
         private int m_phoneNumber;
         private int m_age;
+
+        private double m_balance = 0;
+
         private Random m_random;
 
         private string m_sortCode;
@@ -99,6 +102,7 @@ namespace BankAccount
 
             m_sortCode = CreateSortCode();
             m_accountNumber = CreateAccountNumber();
+
         }
 
         private string CreateSortCode()
@@ -155,6 +159,52 @@ namespace BankAccount
         public string AccountType
         {
             get { return m_accountType; }
+        }
+
+        private double RoundDownValue(double value)
+        {
+            double newvalue = Math.Floor(value * 100) / 100;
+            return newvalue;
+        }
+        private string DisplayValue(double value)
+        {
+            string valueString = value.ToString("0.00");
+            return valueString;
+        }
+        public double GetBalance()
+        {
+            Console.WriteLine($"Your balance is £{DisplayValue(m_balance)}");
+            return m_balance;
+        }
+
+        public void DepositMoney(double depositValue)
+        {
+            m_balance += depositValue;
+            m_balance = RoundDownValue(m_balance);
+            Console.WriteLine($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
+            return;
+        }
+
+        public void WithdrawMoney(double withdrawAmount)
+        {
+            if (withdrawAmount <= 0)
+            {
+                Console.WriteLine($"Error: You cannot withdraw a negative amount");
+                return;
+            }
+            if (withdrawAmount <= m_balance)
+            {
+                withdrawAmount = RoundDownValue(withdrawAmount);
+                m_balance = m_balance - withdrawAmount;
+                m_balance = RoundDownValue(m_balance);
+                Console.WriteLine($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+            }
+            else
+            {
+                withdrawAmount = RoundDownValue(withdrawAmount);
+                Console.WriteLine($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+            }
+            return;
         }
     }
 
@@ -218,18 +268,22 @@ namespace BankAccount
     {
         static void Main(string[] args)
         {
-            BankAccount ba = new BankAccount("Charles");
-            double balance = ba.GetBalance();
-            ba.DepositMoney(5000.2);
-            ba.WithdrawMoney(7000.294);
-            ba.WithdrawMoney(2000);
-            ba.WithdrawMoney(-20000);
+            //BankAccount ba = new BankAccount("Charles");
+            //double balance = ba.GetBalance();
+            //ba.DepositMoney(5000.2);
+            //ba.WithdrawMoney(7000.294);
+            //ba.WithdrawMoney(2000);
+            //ba.WithdrawMoney(-20000);
 
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
             string pFullName = String.Concat(p.FirstName, p.LastName);
             Account acc = new Account(p, pFullName, p.Address, "current", p.Email, p.Phone, p.Age);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
             Account acc2 = new Account(p);
+            acc2.DepositMoney(5000.2);
+            acc2.WithdrawMoney(7000.294);
+            acc2.WithdrawMoney(2000);
+            acc2.WithdrawMoney(-20000);
         }
     }
 }
