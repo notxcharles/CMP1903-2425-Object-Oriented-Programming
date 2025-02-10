@@ -31,8 +31,9 @@ namespace BankAccount
 
         public void WithdrawMoney(int withdrawAmount)
         {
-            if (withdrawAmount >= m_balance)
+            if (withdrawAmount <= m_balance)
             {
+                m_balance = m_balance - withdrawAmount;
                 Console.WriteLine($"You have withdrawn {withdrawAmount}. Remaining balance: {m_balance}");
             }
             else
@@ -45,6 +46,11 @@ namespace BankAccount
     {
         static void Main(string[] args)
         {
+            BankAccount ba = new BankAccount("Charles");
+            int balance = ba.GetBalance();
+            ba.DepositMoney(5000);
+            ba.WithdrawMoney(7000);
+            ba.WithdrawMoney(2000);
         }
     }
 }
