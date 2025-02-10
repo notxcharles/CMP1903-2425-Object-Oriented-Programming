@@ -6,6 +6,7 @@ using System.Security.AccessControl;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace BankAccount
 {
@@ -111,6 +112,7 @@ namespace BankAccount
         {
             int accountNumber = 0;
             accountNumber = m_random.Next(00000000, 99999999);
+            Console.WriteLine(accountNumber);
             return accountNumber;
         }
         public string SortCode
@@ -226,6 +228,8 @@ namespace BankAccount
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
             string pFullName = String.Concat(p.FirstName, p.LastName);
             Account acc = new Account(p, pFullName, p.Address, "current", p.Email, p.Phone, p.Age);
+            Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
+            Account acc2 = new Account(p);
         }
     }
 }
