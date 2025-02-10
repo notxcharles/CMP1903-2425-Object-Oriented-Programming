@@ -59,19 +59,21 @@ namespace _2025_02_10_Workshop_3
                     int computerRoll = computerPlayer.PlayTurn();
                     DeclareWinner(playerRoll, computerRoll);
                 }
-                Console.WriteLine($"The final score was:\nuser: {userWins} | computer: {computerWins}");
+                Console.WriteLine($"The final score was:\nuser: {userPlayer.score} | computer: {computerPlayer.score}");
+                userPlayer.score = 0;
+                computerPlayer.score = 0;
             }
             private void DeclareWinner(int playerRoll, int computerRoll)
             {
                 if (playerRoll < computerRoll)
                 {
                     Console.WriteLine($"The computer wins! The computer rolled {computerRoll} vs the player's {playerRoll}");
-                    computerWins += 1;
+                    computerPlayer.score += 1;
                 }
                 else if (playerRoll > computerRoll)
                 {
                     Console.WriteLine($"The player wins! The player rolled {playerRoll} vs the computer's {computerRoll}");
-                    userWins += 1;
+                    userPlayer.score += 1;
                 }
                 else
                 {
