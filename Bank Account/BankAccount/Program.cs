@@ -31,6 +31,11 @@ namespace BankAccount
 
         public void WithdrawMoney(int withdrawAmount)
         {
+            if (withdrawAmount <= 0)
+            {
+                Console.WriteLine($"Error: You cannot withdraw a negative amount");
+                return;
+            }
             if (withdrawAmount <= m_balance)
             {
                 m_balance = m_balance - withdrawAmount;
@@ -51,6 +56,7 @@ namespace BankAccount
             ba.DepositMoney(5000);
             ba.WithdrawMoney(7000);
             ba.WithdrawMoney(2000);
+            ba.WithdrawMoney(-20000);
         }
     }
 }
