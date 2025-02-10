@@ -41,10 +41,7 @@ namespace _2025_02_10_Workshop_3
             private Player computerPlayer;
             private int numberOfTurns;
             private int numberOfTurnsPlayed;
-            private int userScore;
-            private int computerScore;
-            private int userWins;
-            private int computerWins;
+
             public Game()
             {
                 userPlayer = new Player();
