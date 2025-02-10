@@ -6,6 +6,41 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
+    public class BankAccount
+    {
+        private string m_accountHolder = "";
+        private int m_balance;
+        public BankAccount(string accountHolder)
+        {
+
+            this.m_balance = 0;
+            this.m_accountHolder = accountHolder;
+        }
+
+        public int GetBalance()
+        {
+            Console.WriteLine($"Your balance is {m_balance}");
+            return m_balance;
+        }
+
+        public void DepositMoney(int depositValue)
+        {
+            m_balance += depositValue;
+            Console.WriteLine($"Deposited {depositValue}. Your balance is {m_balance}.");
+        }
+
+        public void WithdrawMoney(int withdrawAmount)
+        {
+            if (withdrawAmount >= m_balance)
+            {
+                Console.WriteLine($"You have withdrawn {withdrawAmount}. Remaining balance: {m_balance}");
+            }
+            else
+            {
+                Console.WriteLine($"You cannot afford to withdraw {withdrawAmount}. Remaining balance: {m_balance}");
+            }
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
