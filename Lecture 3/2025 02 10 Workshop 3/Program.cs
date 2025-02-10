@@ -94,7 +94,7 @@ namespace _2025_02_10_Workshop_3
                     }
                     catch (FormatException)
                     {
-                        Console.WriteLine($"Error: unable to parse {turns} to an integer");
+                        Console.WriteLine($"Error: unable to parse \"{turns}\" to an integer");
                     }
                 }
                 return -1;
