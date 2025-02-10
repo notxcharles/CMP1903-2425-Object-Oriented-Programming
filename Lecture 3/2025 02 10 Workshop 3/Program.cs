@@ -51,6 +51,7 @@ namespace _2025_02_10_Workshop_3
             private Player userPlayer;
             private Player computerPlayer;
             private int numberOfTurns;
+            private int numberOfTurnsPlayed;
             private int userScore;
             private int computerScore;
             private int userWins;
@@ -62,7 +63,29 @@ namespace _2025_02_10_Workshop_3
             }
             public void Start()
             {
-
+                numberOfTurns = SetNumberOfTurns();
+                while (numberOfTurnsPlayed <= numberOfTurns)
+                {
+                    DeclareWinner();
+                }
+            }
+            private void DeclareWinner(int playerRoll, int computerRoll)
+            {
+                if (playerRoll < computerRoll)
+                {
+                    Console.WriteLine($"The computer wins! The computer rolled {computerRoll} vs the player's {playerRoll}");
+                    computerWins += 1;
+                }
+                else if (playerRoll > computerRoll)
+                {
+                    Console.WriteLine($"The player wins! The player rolled {playerRoll} vs the computer's {computerRoll}");
+                    userWins += 1;
+                }
+                else
+                {
+                    Console.WriteLine($"No winner - both the player and the computer rolled a {playerRoll}");
+                }
+                numberOfTurnsPlayed += 1;
             }
             private int SetNumberOfTurns()
             {
