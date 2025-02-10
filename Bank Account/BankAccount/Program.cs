@@ -28,7 +28,7 @@ namespace BankAccount
         }
         public double GetBalance()
         {
-            Console.WriteLine($"Your balance is {DisplayValue(m_balance)}");
+            Console.WriteLine($"Your balance is £{DisplayValue(m_balance)}");
             return m_balance;
         }
 
@@ -36,7 +36,7 @@ namespace BankAccount
         {
             m_balance += depositValue;
             m_balance = RoundDownValue(m_balance);
-            Console.WriteLine($"Deposited {DisplayValue(depositValue)}. Your balance is {DisplayValue(m_balance)}.");
+            Console.WriteLine($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
             return;
         }
 
@@ -52,12 +52,12 @@ namespace BankAccount
                 withdrawAmount = RoundDownValue(withdrawAmount);
                 m_balance = m_balance - withdrawAmount;
                 m_balance = RoundDownValue(m_balance);
-                Console.WriteLine($"You have withdrawn {DisplayValue(withdrawAmount)}. Remaining balance: {DisplayValue(m_balance)}");
+                Console.WriteLine($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
             }
             else
             {
                 withdrawAmount = RoundDownValue(withdrawAmount);
-                Console.WriteLine($"You cannot afford to withdraw {DisplayValue(withdrawAmount)}. Remaining balance: {DisplayValue(m_balance)}");
+                Console.WriteLine($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
             }
             return;
         }
