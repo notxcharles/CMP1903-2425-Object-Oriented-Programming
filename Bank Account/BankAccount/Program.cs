@@ -16,7 +16,12 @@ namespace BankAccount
             this.m_accountHolder = accountHolder;
             return;
         }
-
+        private double RoundDownValue(double value)
+        {
+            double newvalue = Math.Floor(value * 100) / 100;
+            Console.WriteLine($"{value} = {newvalue}");
+            return newvalue;
+        }
         public double GetBalance()
         {
             Console.WriteLine($"Your balance is {m_balance}");
@@ -26,6 +31,7 @@ namespace BankAccount
         public void DepositMoney(double depositValue)
         {
             m_balance += depositValue;
+            m_balance = RoundDownValue(m_balance);
             Console.WriteLine($"Deposited {depositValue}. Your balance is {m_balance}.");
             return;
         }
@@ -39,11 +45,14 @@ namespace BankAccount
             }
             if (withdrawAmount <= m_balance)
             {
+                withdrawAmount = RoundDownValue(withdrawAmount);
                 m_balance = m_balance - withdrawAmount;
+                m_balance = RoundDownValue(m_balance);
                 Console.WriteLine($"You have withdrawn {withdrawAmount}. Remaining balance: {m_balance}");
             }
             else
             {
+                withdrawAmount = RoundDownValue(withdrawAmount);
                 Console.WriteLine($"You cannot afford to withdraw {withdrawAmount}. Remaining balance: {m_balance}");
             }
             return;
