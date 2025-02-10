@@ -6,6 +6,25 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
+    public class Person
+    {
+        private string m_firstName;
+        private string m_lastName;
+        private string m_email;
+        private int m_phone;
+        private string m_address;
+        private int m_age;
+
+        public Person(string firstName, string lastName, string email, int phone, string address, int age)
+        {
+            m_firstName = firstName;
+            m_lastName = lastName;
+            m_email = email;
+            m_phone = phone;
+            m_address = address;
+            m_age = age;
+        }
+    }
     public class BankAccount
     {
         private string m_accountHolder = "";
