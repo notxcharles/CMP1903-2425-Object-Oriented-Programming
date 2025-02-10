@@ -6,6 +6,55 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
+    public class Person
+    {
+        private string m_firstName;
+        private string m_lastName;
+        private string m_email;
+        private int m_phone;
+        private string m_address;
+        private int m_age;
+
+        public Person(string firstName, string lastName, string email, int phone, string address, int age)
+        {
+            m_firstName = firstName;
+            m_lastName = lastName;
+            m_email = email;
+            m_phone = phone;
+            m_address = address;
+            m_age = age;
+        }
+        public string FirstName
+        {
+            get { return m_firstName; }
+            set { m_firstName = value; }
+        }
+        public string LastName
+        {
+            get { return m_lastName; }
+            set { m_lastName = value; }
+        }
+        public string Email
+        {
+            get { return m_email; }
+            set { m_email = value; }
+        }
+        public int Phone
+        {
+            get { return m_phone; }
+            set { m_phone = value; }
+        }
+        public string Address
+        {
+            get { return m_address; }
+            set { m_address = value; }
+        }
+        public int Age
+        {
+            get { return m_age; }
+            set { m_age = value; }
+        }
+    }
     public class BankAccount
     {
         private string m_accountHolder = "";
