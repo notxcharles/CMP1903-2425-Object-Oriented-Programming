@@ -15,6 +15,7 @@ namespace BankAccount
 
             this.m_balance = 0;
             this.m_accountHolder = accountHolder;
+            return;
         }
 
         public int GetBalance()
@@ -27,6 +28,7 @@ namespace BankAccount
         {
             m_balance += depositValue;
             Console.WriteLine($"Deposited {depositValue}. Your balance is {m_balance}.");
+            return;
         }
 
         public void WithdrawMoney(int withdrawAmount)
@@ -45,6 +47,7 @@ namespace BankAccount
             {
                 Console.WriteLine($"You cannot afford to withdraw {withdrawAmount}. Remaining balance: {m_balance}");
             }
+            return;
         }
     }
     internal class Program
