@@ -29,21 +29,10 @@ namespace _2025_02_10_Workshop_3
                 dice = new Dice();
                 score = 0;
             }
-            public void PlayTurn()
+            public int PlayTurn()
             {
-                // Computer's roll:
-                int computerRoll = dice.Roll();
-                // Player's roll:
                 int playersRoll = dice.Roll();
-
-                if (playersRoll > computerRoll)
-                {
-                    score += 1;
-                } 
-                else if (playersRoll < computerRoll)
-                {
-                    score -= 1;
-                }
+                return playersRoll;
             }
         }
         class Game
@@ -66,8 +55,11 @@ namespace _2025_02_10_Workshop_3
                 numberOfTurns = SetNumberOfTurns();
                 while (numberOfTurnsPlayed <= numberOfTurns)
                 {
-                    DeclareWinner();
+                    int playerRoll = userPlayer.PlayTurn();
+                    int computerRoll = computerPlayer.PlayTurn();
+                    DeclareWinner(playerRoll, computerRoll);
                 }
+
             }
             private void DeclareWinner(int playerRoll, int computerRoll)
             {
@@ -117,7 +109,8 @@ namespace _2025_02_10_Workshop_3
 
             Player player = new Player();
             player.PlayTurn();
-            Console.WriteLine(player.score);
+
+            game.Start();
         }
     }
 }
