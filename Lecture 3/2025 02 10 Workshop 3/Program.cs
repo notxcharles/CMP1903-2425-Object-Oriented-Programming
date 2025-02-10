@@ -48,12 +48,42 @@ namespace _2025_02_10_Workshop_3
         }
         class Game
         {
+            private Player userPlayer;
+            private Player computerPlayer;
+            private int numberOfTurns;
+            private int userScore;
+            private int computerScore;
+            private int userWins;
+            private int computerWins;
             public Game()
             {
+                userPlayer = new Player();
+                computerPlayer = new Player();
             }
             public void Start()
             {
 
+            }
+            private int SetNumberOfTurns()
+            {
+                bool failed = true;
+
+                while (failed)
+                {
+                    Console.WriteLine("How many turns would you like to play?");
+                    string turns = Console.ReadLine();
+                    try
+                    {
+                        int turnsInput = Int32.Parse(turns);
+                        failed = false;
+                        return turnsInput;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine($"Error: unable to parse {turns} to an integer")
+                    }
+                }
+                return -1;
             }
         }
 
