@@ -9,29 +9,28 @@ namespace BankAccount
     public class BankAccount
     {
         private string m_accountHolder = "";
-        private int m_balance;
+        private double m_balance;
         public BankAccount(string accountHolder)
         {
-
             this.m_balance = 0;
             this.m_accountHolder = accountHolder;
             return;
         }
 
-        public int GetBalance()
+        public double GetBalance()
         {
             Console.WriteLine($"Your balance is {m_balance}");
             return m_balance;
         }
 
-        public void DepositMoney(int depositValue)
+        public void DepositMoney(double depositValue)
         {
             m_balance += depositValue;
             Console.WriteLine($"Deposited {depositValue}. Your balance is {m_balance}.");
             return;
         }
 
-        public void WithdrawMoney(int withdrawAmount)
+        public void WithdrawMoney(double withdrawAmount)
         {
             if (withdrawAmount <= 0)
             {
@@ -55,9 +54,9 @@ namespace BankAccount
         static void Main(string[] args)
         {
             BankAccount ba = new BankAccount("Charles");
-            int balance = ba.GetBalance();
-            ba.DepositMoney(5000);
-            ba.WithdrawMoney(7000);
+            double balance = ba.GetBalance();
+            ba.DepositMoney(5000.2);
+            ba.WithdrawMoney(7000.294);
             ba.WithdrawMoney(2000);
             ba.WithdrawMoney(-20000);
         }
