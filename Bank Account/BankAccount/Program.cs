@@ -145,6 +145,10 @@ namespace BankAccount
             get { return m_age; }
             set { m_age = value; }
         }
+        public string AccountType
+        {
+            get { return m_accountType; }
+        }
     }
 
     public class BankAccount
