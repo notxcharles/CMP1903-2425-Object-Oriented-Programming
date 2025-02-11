@@ -210,28 +210,21 @@ namespace BankAccount
     public class Bank
     {
         //Class bank should keep track of all accounts that are currently open
-        string m_Name;
+        private string m_name;
         Bank(string name)
         {
-            m_Name = name;
+            m_name = name;
         }
         public string BankName
         {
-            get { return m_Name; }
-            set { m_Name = value; }
+            get { return m_name; }
+            set { m_name = value; }
         }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            //BankAccount ba = new BankAccount("Charles");
-            //double balance = ba.GetBalance();
-            //ba.DepositMoney(5000.2);
-            //ba.WithdrawMoney(7000.294);
-            //ba.WithdrawMoney(2000);
-            //ba.WithdrawMoney(-20000);
-
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
             Account acc2 = new Account(p, "current");
