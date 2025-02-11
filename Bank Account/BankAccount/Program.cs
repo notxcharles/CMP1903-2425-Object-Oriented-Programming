@@ -125,8 +125,6 @@ namespace BankAccount
             ba.WithdrawMoney(7000.294);
             ba.WithdrawMoney(2000);
             ba.WithdrawMoney(-20000);
-            Person p = new Person("charles", "harrison", "email", 123456789, "email", 50);
-            Console.WriteLine(p.FullName);
         }
     }
 }
