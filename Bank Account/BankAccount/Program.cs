@@ -81,7 +81,7 @@ namespace BankAccount
         {
             m_accountPerson = accountHolderPerson;
             m_accountType = accountType;
-            m_accountHistory.Add($"Account created with {m_accountPerson}");
+            m_accountHistory.Add($"Account created with {m_accountPerson.FullName}");
             m_random = new Random();
             m_sortCode = CreateSortCode();
             m_accountNumber = CreateAccountNumber();
@@ -102,7 +102,7 @@ namespace BankAccount
         }
         public string AccountHolderName
         {
-            get { return String.Concat(m_accountPerson.FirstName, " ", m_accountPerson.LastName); }
+            get { return m_accountPerson.FullName; }
         }
         public string Address
         {
@@ -191,7 +191,7 @@ namespace BankAccount
         }
         public void ShowAccountDetails()
         {
-            Console.WriteLine($"\nAccount holder: {String.Concat(m_accountPerson.FirstName, " ", m_accountPerson.LastName)}");
+            Console.WriteLine($"\nAccount holder: {m_accountPerson.FullName}");
             Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
             Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
             return;
@@ -275,7 +275,6 @@ namespace BankAccount
             //ba.WithdrawMoney(-20000);
 
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
-            string pFullName = String.Concat(p.FirstName, p.LastName);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
             Account acc2 = new Account(p, "current");
             acc2.DepositMoney(5000.2);
