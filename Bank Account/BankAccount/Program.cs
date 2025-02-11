@@ -39,6 +39,10 @@ namespace BankAccount
             get { return m_lastName; }
             set { m_lastName = value; }
         }
+        public string FullName
+        {
+            get { return String.Concat(m_firstName, " ", m_lastName); }
+        }
         public string Email
         {
             get { return m_email; }
