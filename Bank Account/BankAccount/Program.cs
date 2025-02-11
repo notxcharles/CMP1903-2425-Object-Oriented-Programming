@@ -34,6 +34,10 @@ namespace BankAccount
             get { return m_lastName; }
             set { m_lastName = value; }
         }
+        public string FullName
+        {
+            get { return String.Concat(m_firstName, " ", m_lastName); }
+        }
         public string Email
         {
             get { return m_email; }
@@ -121,6 +125,8 @@ namespace BankAccount
             ba.WithdrawMoney(7000.294);
             ba.WithdrawMoney(2000);
             ba.WithdrawMoney(-20000);
+            Person p = new Person("charles", "harrison", "email", 123456789, "email", 50);
+            Console.WriteLine(p.FullName);
         }
     }
 }
