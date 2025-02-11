@@ -211,7 +211,8 @@ namespace BankAccount
     {
         //Class bank should keep track of all accounts that are currently open
         private string m_name;
-        Bank(string name)
+        private List<Account> m_accounts;
+        public Bank(string name)
         {
             m_name = name;
         }
@@ -219,6 +220,10 @@ namespace BankAccount
         {
             get { return m_name; }
             set { m_name = value; }
+        }
+        public void AddAccount(Account account) 
+        {
+            m_accounts.Add(account);
         }
     }
     internal class Program
@@ -234,6 +239,10 @@ namespace BankAccount
             acc2.WithdrawMoney(-20000);
             acc2.ShowAccountDetails();
             acc2.ShowAccountHistory();
+
+            Bank b = new Bank("Charles Bank");
+            Console.WriteLine($"\n{b.BankName}");
+            b.AddAccount(acc2);
         }
     }
 }
