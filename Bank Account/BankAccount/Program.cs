@@ -64,23 +64,24 @@ namespace BankAccount
     {
         private Person m_accountPerson;
         private string m_accountType;
-
         private double m_balance = 0;
 
         private Random m_random;
 
         private string m_sortCode;
         private int m_accountNumber;
+        // Account history will store all transaction history and when the account was set up
+        private List<string> m_accountHistory = new List<string>();
 
         public Account(Person accountHolderPerson, string accountType) 
         {
             m_accountPerson = accountHolderPerson;
             m_accountType = accountType;
+            m_accountHistory.Add($"Account created with {m_accountPerson}");
             m_random = new Random();
-
             m_sortCode = CreateSortCode();
             m_accountNumber = CreateAccountNumber();
-
+            m_accountHistory.Add($"Sort Code and Account Number created: {m_sortCode} {m_accountNumber}");
         }
         
         public string SortCode
@@ -153,28 +154,34 @@ namespace BankAccount
         {
             m_balance += depositValue;
             m_balance = RoundDownValue(m_balance);
-            Console.WriteLine($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
+            string message = ($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
+            Console.WriteLine(message);
+            m_accountHistory.Add(message);
             return;
         }
 
         public void WithdrawMoney(double withdrawAmount)
         {
+            string message;
             if (withdrawAmount <= 0)
             {
                 Console.WriteLine($"Error: You cannot withdraw a negative amount");
-                return;
             }
-            if (withdrawAmount <= m_balance)
+            else if (withdrawAmount <= m_balance)
             {
                 withdrawAmount = RoundDownValue(withdrawAmount);
                 m_balance = m_balance - withdrawAmount;
                 m_balance = RoundDownValue(m_balance);
-                Console.WriteLine($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                message = ($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                Console.WriteLine(message);
+                m_accountHistory.Add(message);
             }
             else
             {
                 withdrawAmount = RoundDownValue(withdrawAmount);
-                Console.WriteLine($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                message = ($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                Console.WriteLine(message);
+                m_accountHistory.Add(message);
             }
             return;
         }
@@ -183,6 +190,15 @@ namespace BankAccount
             Console.WriteLine($"\nAccount holder: {String.Concat(m_accountPerson.FirstName, " ", m_accountPerson.LastName)}");
             Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
             Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
+            return;
+        }
+        public void ShowAccountHistory()
+        {
+            Console.WriteLine($"\nAccount History:");
+            for (int i = 0; i < m_accountHistory.Count; i++) 
+            {
+                Console.WriteLine(m_accountHistory[i]);
+            }
             return;
         }
     }
@@ -256,7 +272,6 @@ namespace BankAccount
 
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
             string pFullName = String.Concat(p.FirstName, p.LastName);
-            Account acc = new Account(p, pFullName, p.Address, "current", p.Email, p.Phone, p.Age);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
             Account acc2 = new Account(p, "current");
             acc2.DepositMoney(5000.2);
@@ -264,6 +279,7 @@ namespace BankAccount
             acc2.WithdrawMoney(2000);
             acc2.WithdrawMoney(-20000);
             acc2.ShowAccountDetails();
+            acc2.ShowAccountHistory();
         }
     }
 }
