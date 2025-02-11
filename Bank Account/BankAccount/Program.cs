@@ -82,20 +82,7 @@ namespace BankAccount
             m_accountNumber = CreateAccountNumber();
 
         }
-        private string CreateSortCode()
-        {
-            // sort code format: 00-00-00
-            string sortCode = $"{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}";
-            Console.WriteLine(sortCode);
-            return sortCode;
-        }
-        private int CreateAccountNumber()
-        {
-            int accountNumber = 0;
-            accountNumber = m_random.Next(00000000, 99999999);
-            Console.WriteLine(accountNumber);
-            return accountNumber;
-        }
+        
         public string SortCode
         {
             get { return m_sortCode; }
@@ -132,7 +119,20 @@ namespace BankAccount
         {
             get { return m_accountType; }
         }
-
+        private string CreateSortCode()
+        {
+            // sort code format: 00-00-00
+            string sortCode = $"{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}";
+            Console.WriteLine(sortCode);
+            return sortCode;
+        }
+        private int CreateAccountNumber()
+        {
+            int accountNumber = 0;
+            accountNumber = m_random.Next(00000000, 99999999);
+            Console.WriteLine(accountNumber);
+            return accountNumber;
+        }
         private double RoundDownValue(double value)
         {
             double newvalue = Math.Floor(value * 100) / 100;
