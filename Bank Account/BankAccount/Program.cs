@@ -82,6 +82,7 @@ namespace BankAccount
             m_accountPerson = accountHolderPerson;
             m_accountHolderName = accountHolderName;
             m_address = address;
+            m_accountType = accountType;
             m_email = email;
             m_phoneNumber = phone;
             m_age = age;
@@ -90,10 +91,11 @@ namespace BankAccount
             m_sortCode = CreateSortCode();
             m_accountNumber = CreateAccountNumber();
         }
-        public Account(Person accountHolderPerson) 
+        public Account(Person accountHolderPerson, string accountType) 
         {
             m_accountPerson = accountHolderPerson;
-            m_accountHolderName = String.Concat(accountHolderPerson.FirstName, accountHolderPerson.LastName);
+            m_accountType = accountType;
+            m_accountHolderName = String.Concat(accountHolderPerson.FirstName, " ", accountHolderPerson.LastName);
             m_address = accountHolderPerson.Address;
             m_email = accountHolderPerson.Email;
             m_phoneNumber = accountHolderPerson.Phone;
@@ -104,7 +106,6 @@ namespace BankAccount
             m_accountNumber = CreateAccountNumber();
 
         }
-
         private string CreateSortCode()
         {
             // sort code format: 00-00-00
@@ -206,6 +207,13 @@ namespace BankAccount
             }
             return;
         }
+        public void ShowAccountDetails()
+        {
+            Console.WriteLine($"\nAccount holder: {String.Concat(m_accountPerson.FirstName, " ", m_accountPerson.LastName)}");
+            Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
+            Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
+            return;
+        }
     }
 
     public class BankAccount
@@ -279,11 +287,12 @@ namespace BankAccount
             string pFullName = String.Concat(p.FirstName, p.LastName);
             Account acc = new Account(p, pFullName, p.Address, "current", p.Email, p.Phone, p.Age);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
-            Account acc2 = new Account(p);
+            Account acc2 = new Account(p, "current");
             acc2.DepositMoney(5000.2);
             acc2.WithdrawMoney(7000.294);
             acc2.WithdrawMoney(2000);
             acc2.WithdrawMoney(-20000);
+            acc2.ShowAccountDetails();
         }
     }
 }
