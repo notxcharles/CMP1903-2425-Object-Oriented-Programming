@@ -67,62 +67,27 @@ namespace BankAccount
     public class Account
     {
         private Person m_accountPerson;
-        private string m_accountHolderName = "";
-        private string m_address;
         private string m_accountType;
-        private string m_email;
-        private int m_phoneNumber;
-        private int m_age;
-
         private double m_balance = 0;
 
         private Random m_random;
 
         private string m_sortCode;
         private int m_accountNumber;
+        // Account history will store all transaction history and when the account was set up
+        private List<string> m_accountHistory = new List<string>();
 
-        public Account(Person accountHolderPerson, string accountHolderName, string address, string accountType, string email = "No email was provided for this account", int phone = -1, int age = -1)
+        public Account(Person accountHolderPerson, string accountType) 
         {
             m_accountPerson = accountHolderPerson;
-            m_accountHolderName = accountHolderName;
-            m_address = address;
-            m_email = email;
-            m_phoneNumber = phone;
-            m_age = age;
+            m_accountType = accountType;
+            m_accountHistory.Add($"Account created with {m_accountPerson.FullName}");
             m_random = new Random();
-            
             m_sortCode = CreateSortCode();
             m_accountNumber = CreateAccountNumber();
+            m_accountHistory.Add($"Sort Code and Account Number created: {m_sortCode} {m_accountNumber}");
         }
-        public Account(Person accountHolderPerson) 
-        {
-            m_accountPerson = accountHolderPerson;
-            m_accountHolderName = String.Concat(accountHolderPerson.FirstName, accountHolderPerson.LastName);
-            m_address = accountHolderPerson.Address;
-            m_email = accountHolderPerson.Email;
-            m_phoneNumber = accountHolderPerson.Phone;
-            m_age = accountHolderPerson.Age;
-            m_random = new Random();
-
-            m_sortCode = CreateSortCode();
-            m_accountNumber = CreateAccountNumber();
-
-        }
-
-        private string CreateSortCode()
-        {
-            // sort code format: 00-00-00
-            string sortCode = $"{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}";
-            Console.WriteLine(sortCode);
-            return sortCode;
-        }
-        private int CreateAccountNumber()
-        {
-            int accountNumber = 0;
-            accountNumber = m_random.Next(00000000, 99999999);
-            Console.WriteLine(accountNumber);
-            return accountNumber;
-        }
+        
         public string SortCode
         {
             get { return m_sortCode; }
@@ -137,34 +102,42 @@ namespace BankAccount
         }
         public string AccountHolderName
         {
-            get { return m_accountHolderName; }
-            set { m_accountHolderName = value; }
+            get { return m_accountPerson.FullName; }
         }
         public string Address
         {
-            get { return m_address; }
-            set { m_address = value; }
+            get { return m_accountPerson.Address; }
         }
         public string Email
         {
-            get { return m_email; }
-            set { m_email = value; }
+            get { return m_accountPerson.Email; }
         }
         public int Age
         {
-            get { return m_age; }
-            set { m_age = value; }
+            get { return m_accountPerson.Age; }
         }
         public int PhoneNumber
         {
-            get { return m_phoneNumber; }
-            set { m_phoneNumber = value; }
+            get { return m_accountPerson.Phone; }
         }
         public string AccountType
         {
             get { return m_accountType; }
         }
-
+        private string CreateSortCode()
+        {
+            // sort code format: 00-00-00
+            string sortCode = $"{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}-{m_random.Next(0, 9)}{m_random.Next(0, 9)}";
+            Console.WriteLine(sortCode);
+            return sortCode;
+        }
+        private int CreateAccountNumber()
+        {
+            int accountNumber = 0;
+            accountNumber = m_random.Next(00000000, 99999999);
+            Console.WriteLine(accountNumber);
+            return accountNumber;
+        }
         private double RoundDownValue(double value)
         {
             double newvalue = Math.Floor(value * 100) / 100;
@@ -185,28 +158,50 @@ namespace BankAccount
         {
             m_balance += depositValue;
             m_balance = RoundDownValue(m_balance);
-            Console.WriteLine($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
+            string message = ($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
+            Console.WriteLine(message);
+            m_accountHistory.Add(message);
             return;
         }
 
         public void WithdrawMoney(double withdrawAmount)
         {
+            string message;
             if (withdrawAmount <= 0)
             {
                 Console.WriteLine($"Error: You cannot withdraw a negative amount");
-                return;
             }
-            if (withdrawAmount <= m_balance)
+            else if (withdrawAmount <= m_balance)
             {
                 withdrawAmount = RoundDownValue(withdrawAmount);
                 m_balance = m_balance - withdrawAmount;
                 m_balance = RoundDownValue(m_balance);
-                Console.WriteLine($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                message = ($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                Console.WriteLine(message);
+                m_accountHistory.Add(message);
             }
             else
             {
                 withdrawAmount = RoundDownValue(withdrawAmount);
-                Console.WriteLine($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                message = ($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
+                Console.WriteLine(message);
+                m_accountHistory.Add(message);
+            }
+            return;
+        }
+        public void ShowAccountDetails()
+        {
+            Console.WriteLine($"\nAccount holder: {m_accountPerson.FullName}");
+            Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
+            Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
+            return;
+        }
+        public void ShowAccountHistory()
+        {
+            Console.WriteLine($"\nAccount History:");
+            for (int i = 0; i < m_accountHistory.Count; i++) 
+            {
+                Console.WriteLine(m_accountHistory[i]);
             }
             return;
         }
@@ -280,14 +275,14 @@ namespace BankAccount
             //ba.WithdrawMoney(-20000);
 
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
-            string pFullName = String.Concat(p.FirstName, p.LastName);
-            Account acc = new Account(p, pFullName, p.Address, "current", p.Email, p.Phone, p.Age);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
-            Account acc2 = new Account(p);
+            Account acc2 = new Account(p, "current");
             acc2.DepositMoney(5000.2);
             acc2.WithdrawMoney(7000.294);
             acc2.WithdrawMoney(2000);
             acc2.WithdrawMoney(-20000);
+            acc2.ShowAccountDetails();
+            acc2.ShowAccountHistory();
         }
     }
 }
