@@ -63,12 +63,7 @@ namespace BankAccount
     public class Account
     {
         private Person m_accountPerson;
-        private string m_accountHolderName = "";
-        private string m_address;
         private string m_accountType;
-        private string m_email;
-        private int m_phoneNumber;
-        private int m_age;
 
         private double m_balance = 0;
 
@@ -77,29 +72,10 @@ namespace BankAccount
         private string m_sortCode;
         private int m_accountNumber;
 
-        public Account(Person accountHolderPerson, string accountHolderName, string address, string accountType, string email = "No email was provided for this account", int phone = -1, int age = -1)
-        {
-            m_accountPerson = accountHolderPerson;
-            m_accountHolderName = accountHolderName;
-            m_address = address;
-            m_accountType = accountType;
-            m_email = email;
-            m_phoneNumber = phone;
-            m_age = age;
-            m_random = new Random();
-            
-            m_sortCode = CreateSortCode();
-            m_accountNumber = CreateAccountNumber();
-        }
         public Account(Person accountHolderPerson, string accountType) 
         {
             m_accountPerson = accountHolderPerson;
             m_accountType = accountType;
-            m_accountHolderName = String.Concat(accountHolderPerson.FirstName, " ", accountHolderPerson.LastName);
-            m_address = accountHolderPerson.Address;
-            m_email = accountHolderPerson.Email;
-            m_phoneNumber = accountHolderPerson.Phone;
-            m_age = accountHolderPerson.Age;
             m_random = new Random();
 
             m_sortCode = CreateSortCode();
@@ -134,28 +110,23 @@ namespace BankAccount
         }
         public string AccountHolderName
         {
-            get { return m_accountHolderName; }
-            set { m_accountHolderName = value; }
+            get { return String.Concat(m_accountPerson.FirstName, " ", m_accountPerson.LastName); }
         }
         public string Address
         {
-            get { return m_address; }
-            set { m_address = value; }
+            get { return m_accountPerson.Address; }
         }
         public string Email
         {
-            get { return m_email; }
-            set { m_email = value; }
+            get { return m_accountPerson.Email; }
         }
         public int Age
         {
-            get { return m_age; }
-            set { m_age = value; }
+            get { return m_accountPerson.Age; }
         }
         public int PhoneNumber
         {
-            get { return m_phoneNumber; }
-            set { m_phoneNumber = value; }
+            get { return m_accountPerson.Phone; }
         }
         public string AccountType
         {
