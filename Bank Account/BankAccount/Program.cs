@@ -191,7 +191,7 @@ namespace BankAccount
         }
         public void ShowAccountDetails()
         {
-            Console.WriteLine($"\nAccount holder: {m_accountPerson.FullName}");
+            Console.WriteLine($"Account holder: {m_accountPerson.FullName}");
             Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
             Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
             return;
@@ -229,6 +229,14 @@ namespace BankAccount
         {
             return m_accounts.Count;
         }
+        public void ShowPreviewOfAccounts()
+        {
+            Console.WriteLine("\nAccounts opened:");
+            for (int i = 0; i < m_accounts.Count; i++)
+            {
+                m_accounts[i].ShowAccountDetails();
+            }
+        }
     }
     internal class Program
     {
@@ -248,6 +256,7 @@ namespace BankAccount
             Console.WriteLine($"\n{b.BankName}");
             b.AddAccount(acc2);
             Console.WriteLine($"Open accounts: {b.GetNumberOfAccounts()}");
+            b.ShowPreviewOfAccounts();
 
         }
     }
