@@ -191,7 +191,7 @@ namespace BankAccount
         }
         public void ShowAccountDetails()
         {
-            Console.WriteLine($"\nAccount holder: {m_accountPerson.FullName}");
+            Console.WriteLine($"Account holder: {m_accountPerson.FullName}");
             Console.WriteLine($"Account type: {m_accountType} | Balance: {m_balance}");
             Console.WriteLine($"Sort Code: {m_sortCode} | Account Number: {m_accountNumber}\n");
             return;
@@ -207,73 +207,41 @@ namespace BankAccount
         }
     }
 
-    public class BankAccount
+    public class Bank
     {
-        private string m_accountHolder = "";
-        private double m_balance;
-        public BankAccount(string accountHolder)
+        //Class bank should keep track of all accounts that are currently open
+        private string m_name;
+        private List<Account> m_accounts = new List<Account>();
+        public Bank(string name)
         {
-            this.m_balance = 0;
-            this.m_accountHolder = accountHolder;
-            return;
+            m_name = name;
         }
-        private double RoundDownValue(double value)
+        public string BankName
         {
-            double newvalue = Math.Floor(value * 100) / 100;
-            return newvalue;
+            get { return m_name; }
+            set { m_name = value; }
         }
-        private string DisplayValue(double value)
+        public void AddAccount(Account account) 
         {
-            string valueString = value.ToString("0.00");
-            return valueString;
+            m_accounts.Add(account);
         }
-        public double GetBalance()
+        public int GetNumberOfAccounts()
         {
-            Console.WriteLine($"Your balance is £{DisplayValue(m_balance)}");
-            return m_balance;
+            return m_accounts.Count;
         }
-
-        public void DepositMoney(double depositValue)
+        public void ShowPreviewOfAccounts()
         {
-            m_balance += depositValue;
-            m_balance = RoundDownValue(m_balance);
-            Console.WriteLine($"Deposited £{DisplayValue(depositValue)}. Your balance is £{DisplayValue(m_balance)}.");
-            return;
-        }
-
-        public void WithdrawMoney(double withdrawAmount)
-        {
-            if (withdrawAmount <= 0)
+            Console.WriteLine("\nAccounts opened:");
+            for (int i = 0; i < m_accounts.Count; i++)
             {
-                Console.WriteLine($"Error: You cannot withdraw a negative amount");
-                return;
+                m_accounts[i].ShowAccountDetails();
             }
-            if (withdrawAmount <= m_balance)
-            {
-                withdrawAmount = RoundDownValue(withdrawAmount);
-                m_balance = m_balance - withdrawAmount;
-                m_balance = RoundDownValue(m_balance);
-                Console.WriteLine($"You have withdrawn £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
-            }
-            else
-            {
-                withdrawAmount = RoundDownValue(withdrawAmount);
-                Console.WriteLine($"You cannot afford to withdraw £{DisplayValue(withdrawAmount)}. Remaining balance: £{DisplayValue(m_balance)}");
-            }
-            return;
         }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            //BankAccount ba = new BankAccount("Charles");
-            //double balance = ba.GetBalance();
-            //ba.DepositMoney(5000.2);
-            //ba.WithdrawMoney(7000.294);
-            //ba.WithdrawMoney(2000);
-            //ba.WithdrawMoney(-20000);
-
             Person p = new Person("charles", "harrison", "c@email.com", 9285728, "house, street, town, postcode", 10);
             Thread.Sleep(20); // need some wait time for the pseudorandom to recalculate again
             Account acc2 = new Account(p, "current");
@@ -283,6 +251,13 @@ namespace BankAccount
             acc2.WithdrawMoney(-20000);
             acc2.ShowAccountDetails();
             acc2.ShowAccountHistory();
+
+            Bank b = new Bank("Charles Bank");
+            Console.WriteLine($"\n{b.BankName}");
+            b.AddAccount(acc2);
+            Console.WriteLine($"Open accounts: {b.GetNumberOfAccounts()}");
+            b.ShowPreviewOfAccounts();
+
         }
     }
 }
