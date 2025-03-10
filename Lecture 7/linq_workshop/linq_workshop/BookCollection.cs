@@ -38,35 +38,36 @@ namespace linq_workshop
         public List<Book> GetBooksByAuthor(string author)
         {
             // TODO #3: mplement the LINQ to get all books by a specific author
-           
-
+            List<Book> books;
+            books = (from book in Books where book.Author == author select book).ToList();
+            return books;
         }
 
-        // Method to get all books containing a specific keyword in the title
-        public List<Book> GetBooksByTitle(string keyword)
-        {
-            // TODO #4: mplement the LINQ to get all books containing a specific keyword in the title
-            
+        //// Method to get all books containing a specific keyword in the title
+        //public List<Book> GetBooksByTitle(string keyword)
+        //{
+        //    // TODO #4: mplement the LINQ to get all books containing a specific keyword in the title
 
 
-        }
 
-        // Method to get the book with the longest title in the collection
-        public Book GetBookWithLongestTitle()
-        {
-            // TODO #5: mplement the LINQ to get the book with the longest title in the collection
-            
+        //}
 
-
-        }
-
-        // Method to group books by author and count the number of books per author
-        public List<(string Author, int BookCount)> GroupBooksByAuthor()
-        {
-            // TODO #6: Implement the LINQ to group books by author and count the number of books per author 
-            
+        //// Method to get the book with the longest title in the collection
+        //public Book GetBookWithLongestTitle()
+        //{
+        //    // TODO #5: mplement the LINQ to get the book with the longest title in the collection
 
 
-        }
+
+        //}
+
+        //// Method to group books by author and count the number of books per author
+        //public List<(string Author, int BookCount)> GroupBooksByAuthor()
+        //{
+        //    // TODO #6: Implement the LINQ to group books by author and count the number of books per author 
+
+
+
+        //}
     }
 }
