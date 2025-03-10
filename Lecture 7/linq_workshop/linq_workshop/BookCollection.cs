@@ -43,14 +43,14 @@ namespace linq_workshop
             return books;
         }
 
-        //// Method to get all books containing a specific keyword in the title
-        //public List<Book> GetBooksByTitle(string keyword)
-        //{
-        //    // TODO #4: mplement the LINQ to get all books containing a specific keyword in the title
-
-
-
-        //}
+        // Method to get all books containing a specific keyword in the title
+        public List<Book> GetBooksByTitle(string keyword)
+        {
+            // TODO #4: mplement the LINQ to get all books containing a specific keyword in the title
+            List<Book> books;
+            books = (from book in Books where book.Title.Contains(keyword) select book).ToList();
+            return books;
+        }
 
         //// Method to get the book with the longest title in the collection
         //public Book GetBookWithLongestTitle()
