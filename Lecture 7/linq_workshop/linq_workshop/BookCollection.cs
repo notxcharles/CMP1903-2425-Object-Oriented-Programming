@@ -52,14 +52,13 @@ namespace linq_workshop
             return books;
         }
 
-        //// Method to get the book with the longest title in the collection
-        //public Book GetBookWithLongestTitle()
-        //{
-        //    // TODO #5: mplement the LINQ to get the book with the longest title in the collection
-
-
-
-        //}
+        // Method to get the book with the longest title in the collection
+        public Book GetBookWithLongestTitle()
+        {
+            // TODO #5: mplement the LINQ to get the book with the longest title in the collection
+            Book longestBook = Books.OrderByDescending(book => book.Title).First();
+            return longestBook;
+        }
 
         //// Method to group books by author and count the number of books per author
         //public List<(string Author, int BookCount)> GroupBooksByAuthor()

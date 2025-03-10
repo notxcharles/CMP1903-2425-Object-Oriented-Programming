@@ -35,18 +35,18 @@ namespace linq_workshop
             //}
 
             // Get books by title keyword
-            string titleKeyword = "Sun";
-            var booksByTitle = bookCollection.GetBooksByTitle(titleKeyword);
-            Console.WriteLine($"\nBooks with title containing '{titleKeyword}':");
-            foreach (var book in booksByTitle)
-            {
-                Console.WriteLine(book);
-            }
+            //string titleKeyword = "Sun";
+            //var booksByTitle = bookCollection.GetBooksByTitle(titleKeyword);
+            //Console.WriteLine($"\nBooks with title containing '{titleKeyword}':");
+            //foreach (var book in booksByTitle)
+            //{
+            //    Console.WriteLine(book);
+            //}
 
-            //// Get the book with the longest title
-            //var longestTitleBook = bookCollection.GetBookWithLongestTitle();
-            //Console.WriteLine("\nBook with the longest title:");
-            //Console.WriteLine(longestTitleBook);
+            // Get the book with the longest title
+            var longestTitleBook = bookCollection.GetBookWithLongestTitle();
+            Console.WriteLine("\nBook with the longest title:");
+            Console.WriteLine(longestTitleBook);
 
             //// Group books by author and display the count
             //var booksGroupedByAuthor = bookCollection.GroupBooksByAuthor();
