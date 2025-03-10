@@ -56,7 +56,7 @@ namespace linq_workshop
         public Book GetBookWithLongestTitle()
         {
             // TODO #5: mplement the LINQ to get the book with the longest title in the collection
-            Book longestBook = Books.OrderByDescending(book => book.Title).First();
+            Book longestBook = Books.OrderByDescending(book => book.Title.Length).First();
             return longestBook;
         }
 
