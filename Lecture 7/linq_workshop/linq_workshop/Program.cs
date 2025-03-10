@@ -25,7 +25,7 @@ namespace linq_workshop
             //    Console.WriteLine($"{book}");
             //}
 
-            //// Get book belonging to "George Orwell"
+            // Get book belonging to "George Orwell"
             //string authorName = "George Orwell";
             //var booksByAuthor = bookCollection.GetBooksByAuthor(authorName);
             //Console.WriteLine($"\nBooks by {authorName}:");
@@ -44,17 +44,17 @@ namespace linq_workshop
             //}
 
             // Get the book with the longest title
-            var longestTitleBook = bookCollection.GetBookWithLongestTitle();
-            Console.WriteLine("\nBook with the longest title:");
-            Console.WriteLine(longestTitleBook);
+            //var longestTitleBook = bookCollection.GetBookWithLongestTitle();
+            //Console.WriteLine("\nBook with the longest title:");
+            //Console.WriteLine(longestTitleBook);
 
-            //// Group books by author and display the count
-            //var booksGroupedByAuthor = bookCollection.GroupBooksByAuthor();
-            //Console.WriteLine("\nBooks grouped by author:");
-            //foreach (var group in booksGroupedByAuthor)
-            //{
-            //    Console.WriteLine($"Author: {group.Author}, Book Count: {group.BookCount}");
-            //}
+            // Group books by author and display the count
+            var booksGroupedByAuthor = bookCollection.GroupBooksByAuthor();
+            Console.WriteLine("\nBooks grouped by author:");
+            foreach (var group in booksGroupedByAuthor)
+            {
+                Console.WriteLine($"Author: {group.Author}, Book Count: {group.BookCount}");
+            }
 
         }
 

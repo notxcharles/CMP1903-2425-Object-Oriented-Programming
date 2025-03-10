@@ -61,12 +61,10 @@ namespace linq_workshop
         }
 
         //// Method to group books by author and count the number of books per author
-        //public List<(string Author, int BookCount)> GroupBooksByAuthor()
-        //{
-        //    // TODO #6: Implement the LINQ to group books by author and count the number of books per author 
-
-
-
-        //}
+        public List<(string Author, int BookCount)> GroupBooksByAuthor()
+        {
+            // TODO #6: Implement the LINQ to group books by author and count the number of books per author 
+            return Books.GroupBy(book => book.Author).Select(nameGroup => (Name: nameGroup.Key, Book: nameGroup.Count())).ToList();
+        }
     }
 }
