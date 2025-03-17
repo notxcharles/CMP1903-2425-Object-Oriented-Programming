@@ -6,7 +6,7 @@ namespace vehicle_system
     {
         private float _loadCapacity;
 
-        Truck(string brand, int year, float loadCapacity) : base(brand, year)
+        public Truck(string brand, int year, float loadCapacity) : base(brand, year)
         {
             _loadCapacity = loadCapacity;
         }

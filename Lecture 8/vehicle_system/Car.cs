@@ -6,7 +6,7 @@ namespace vehicle_system
     {
         private int _doors;
 
-        Car(string brand, int year, int doors) : base(brand, year)
+        public Car(string brand, int year, int doors) : base(brand, year)
         {
             _doors = doors;
         }

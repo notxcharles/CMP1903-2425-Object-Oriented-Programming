@@ -6,7 +6,7 @@ namespace vehicle_system
     {
         private bool _hasGear;
 
-        Bike(string brand, int year, bool hasGear) : base(brand, year)
+        public Bike(string brand, int year, bool hasGear) : base(brand, year)
         {
             _hasGear = hasGear;
         }
