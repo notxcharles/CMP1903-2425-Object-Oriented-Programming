@@ -2,20 +2,20 @@
 
 namespace vehicle_system
 {
-    // TODO: Implement inheritance by
-    // making Bus a subclass of Vehicle.
-    public class Bus
+    public class Bus : Vehicle
     {
-        // TODO: Declare data members specific to the Bus class, 
-        // following the encapsulation guidelines provided.
+        private int passengerCapacity;
 
+        Bus(string brand, int year, int doors) : base(brand, year)
+        {
+            passengerCapacity = doors;
+        }
 
-        // TODO: Implement Bus constructor that calls the
-        // base class constructor.
+        public int Doors { get { return passengerCapacity; } }
 
-        // TODO: Override the DisplayInfo() method from the
-        // base class to display both Bus-specific attributes
-        // and base class attributes.
-
+        public override void DisplayInfo()
+        {
+            Console.WriteLine($"{Brand} built in {Year} with {passengerCapacity} passenger capacity");
+        }
     }
 }
