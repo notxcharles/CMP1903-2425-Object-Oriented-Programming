@@ -17,7 +17,7 @@ namespace vehicle_system
         public string Brand { get { return _brand; } }
         public int Year { get { return _year; } }
 
-        public void DisplayInfo()
+        public virtual void DisplayInfo()
         {
             Console.WriteLine($"{Brand} built in {Year}");
         }
