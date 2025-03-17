@@ -11,7 +11,14 @@ namespace vehicle_system
             _loadCapacity = loadCapacity;
         }
 
-        public float LoadCapacity { get { return _loadCapacity; } }
+        public float LoadCapacity { 
+            get { return _loadCapacity; } 
+            set { if (value > 0 && value <= 2300)
+                {
+                    _loadCapacity = value;
+                }
+            }
+        }
 
         public override void DisplayInfo()
         {
