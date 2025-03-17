@@ -5,16 +5,22 @@ namespace vehicle_system
     // Vehicle is the base class
     public class Vehicle
     {
-        // TODO: Declare data members unique to the Vehicle class
-        // and provide appropriate getter and setter methods.
+        private string _brand;
+        private int _year;
 
+        public Vehicle(string brand, int year)
+        {
+            _brand = brand;
+            _year = year;
+        }
 
-        // TODO: Implement the Vehicle constructor to
-        // initialise its data members with provided values.
+        public string Brand { get { return _brand; } }
+        public int Year { get { return _year; } }
 
-
-        // TODO: Implement the DisplayInfo() method
-        // to output the vehicle's attributes.
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"{Brand} built in {Year}");
+        }
 
 
     }
