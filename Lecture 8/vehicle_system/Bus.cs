@@ -6,12 +6,13 @@ namespace vehicle_system
     {
         private int _passengerCapacity;
 
-        public Bus(string brand, int year, int doors) : base(brand, year)
+        public Bus(string brand, int year, int passengerCapacity) : base(brand, year)
         {
-            _passengerCapacity = doors;
+            _passengerCapacity = passengerCapacity;
         }
 
-        public int Doors { 
+        public int PassengerCapacity
+        { 
             get { return _passengerCapacity; }
             set
             {
