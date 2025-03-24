@@ -12,8 +12,24 @@ namespace eCommerce_Platform
         private protected decimal _price;
         public ProductBase(string productName, decimal price)
         {
+            CheckValidName(productName);
             _productName = productName;
+            CheckValidPrice(price);
             _price = price;
+        }
+        private void CheckValidName(string productName)
+        {
+            if (String.IsNullOrEmpty(productName))
+            {
+                throw new Exception("productName is null or empty");
+            }
+        }
+        private void CheckValidPrice(decimal price)
+        {
+            if (_price <= 0)
+            {
+                throw new Exception("Price must be positive");
+            }
         }
         public abstract string GetProductName();
 
