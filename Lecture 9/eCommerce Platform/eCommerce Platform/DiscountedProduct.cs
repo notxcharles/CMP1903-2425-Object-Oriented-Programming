@@ -11,10 +11,11 @@ namespace Ecommerce
         public decimal DiscountPercentage { get; set; }
         public string ProductID { get; set; }
 
-        public DiscountedProduct(string productID, string productName, decimal price, decimal discountPercentage): base(productName, price)
+        public DiscountedProduct(string productID, string productName, decimal price): base(productName, price)
         {
             ProductID = productID;
-            DiscountPercentage = discountPercentage;
+            DiscountPercentage = CalculateDiscountPercentage();
+
         }
 
         public override string GetProductName() => _productName;
@@ -25,9 +26,20 @@ namespace Ecommerce
         }
         public override void ReportProduct()
         {
-            Console.WriteLine($"{_productName} is on discount at {DiscountPercentage} and costs {_price}");
+            Console.WriteLine($"{_productName} is on discount at {DiscountPercentage} and costs {CalculateFinalPrice()}");
         }
-
+        private int CalculateDiscountPercentage()
+        {
+            if (_price > 200)
+            {
+                return 20;
+            }
+            else if (_price > 100)
+            {
+                return 10;
+            }
+            return 0;
+        }
     }
 
 }
