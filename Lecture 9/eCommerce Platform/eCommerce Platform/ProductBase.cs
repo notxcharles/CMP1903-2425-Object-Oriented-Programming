@@ -19,6 +19,10 @@ namespace eCommerce_Platform
 
         public abstract decimal GetPrice();
 
-        
+        public virtual void ReportProduct()
+        {
+            Console.WriteLine($"{_productName} costs £{_price}");
+        }
+
     }
 }
